@@ -108,7 +108,7 @@ function handleClick(evt) {
   board[y][x] = currPlayer;
   placeInTable(y, x);
 
-  // check for win
+  // Call check for win
   if (checkForWin()) {
     return endGame(`Player ${currPlayer} won!`);
   }
@@ -143,27 +143,35 @@ function checkForWin() {
   }
 
   // TODO: read and understand this code. Add comments to help you.
+  // Checks for win conditions
 
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
+      // Checks horizontal win condition
       const horiz = [
         [y, x],
         [y, x + 1],
         [y, x + 2],
         [y, x + 3],
       ];
+
+      // Checks vertical win condition
       const vert = [
         [y, x],
         [y + 1, x],
         [y + 2, x],
         [y + 3, x],
       ];
+
+      // Checks right diagonal win condition
       const diagDR = [
         [y, x],
         [y + 1, x + 1],
         [y + 2, x + 2],
         [y + 3, x + 3],
       ];
+
+      // Checks left diagonal win condition
       const diagDL = [
         [y, x],
         [y + 1, x - 1],
@@ -171,6 +179,7 @@ function checkForWin() {
         [y + 3, x - 3],
       ];
 
+      // If any of the win coditions are met returns true that there is a win
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
       }
